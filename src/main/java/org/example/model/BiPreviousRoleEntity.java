@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Builder
 @Entity
 @TableGenerator(name = "previousRoleEntitySequence", initialValue = 75)
-public class PreviousRoleEntity implements Serializable {
+public class BiPreviousRoleEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "previousRoleEntitySequence")
     @Column(name = "pk_id")
@@ -21,7 +21,8 @@ public class PreviousRoleEntity implements Serializable {
     private String jobTitle;
     private String grade;
 
-    // TODO Kieran.Hegarty 02/12/2020 09:07 > NO column for FK WORKS
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private AcmeBiRequestEntity fk_AcmeBiRequestEntity;
 
 }
 

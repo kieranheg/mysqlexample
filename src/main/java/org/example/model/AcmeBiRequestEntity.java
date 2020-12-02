@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Entity
 @TableGenerator(name = "acmeRequestEntitySequence", initialValue = 99)
 @JsonIgnoreProperties({"previousRoles"})
-public class AcmeRequestEntity implements Serializable {
+public class AcmeBiRequestEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "acmeRequestEntitySequence")
     @Column(name = "are_id")
@@ -27,24 +27,23 @@ public class AcmeRequestEntity implements Serializable {
     private String grade;
 
     // TODO Kieran.Hegarty 02/12/2020 09:07 > UNI-DIRECTIONAL WORKS, NO CHILD FK RETURNED
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "fk_are_id")
-    private List<PreviousRoleEntity> previousRoles;
+    @OneToMany(mappedBy="fk_AcmeBiRequestEntity", cascade = CascadeType.PERSIST)
+    private List<BiPreviousRoleEntity> previousRoles;
 
-    public AcmeRequestEntity(final AcmeRequest acmeRequest) {
+    public AcmeBiRequestEntity(final AcmeBiEmployee acmeRequest) {
         this.setName(acmeRequest.getName());
         this.setJobTitle(acmeRequest.getJobTitle());
         this.setGrade(acmeRequest.getGrade());
         this.setPreviousRoles(buildPreviousRoleEntity(acmeRequest.getPreviousRoles()));
     }
 
-    private List<PreviousRoleEntity> buildPreviousRoleEntity(final List<PreviousRole> previousRoles) {
+    private List<BiPreviousRoleEntity> buildPreviousRoleEntity(final List<BiPreviousRole> previousRoles) {
         return previousRoles.stream().map(
                 previousRole -> {
-                    PreviousRoleEntity previousRoleEntity = new PreviousRoleEntity();
+                    BiPreviousRoleEntity previousRoleEntity = new BiPreviousRoleEntity();
                     previousRoleEntity.setJobTitle(previousRole.getJobTitle());
                     previousRoleEntity.setGrade(previousRole.getGrade());
-//                    previousRoleEntity.setAcmeRequestFK(this.getId());
+                    previousRoleEntity.setFk_AcmeBiRequestEntity(this);
                     return previousRoleEntity;
                 }).collect(Collectors.toList());
     }

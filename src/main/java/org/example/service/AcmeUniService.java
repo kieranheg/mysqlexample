@@ -1,19 +1,19 @@
 package org.example.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.model.AcmeRequest;
-import org.example.model.AcmeRequestEntity;
-import org.example.repository.AcmeRepo;
+import org.example.model.AcmeUniEmployee;
+import org.example.model.AcmeUniRequestEntity;
+import org.example.repository.AcmeUniRepo;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AcmeService {
+public class AcmeUniService {
 
-    private final AcmeRepo acmeRepo;
+    private final AcmeUniRepo acmeRepo;
 
-    public AcmeRequestEntity saveAcmeRequest(final AcmeRequest acmeRequest) {
-        AcmeRequestEntity acmeRequestEntity = new AcmeRequestEntity(acmeRequest);
+    public AcmeUniRequestEntity saveAcmeRequest(final AcmeUniEmployee acmeRequest) {
+        AcmeUniRequestEntity acmeRequestEntity = new AcmeUniRequestEntity(acmeRequest);
         return acmeRepo.save(acmeRequestEntity);
     }
 

@@ -3,7 +3,7 @@ spring:
     show-sql: true
     generate-ddl: true
   datasource:
-    url: jdbc:mysql://localhost:3306/mysqlexample?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/myex?useTimezone=true&serverTimezone=UTC
     username: root
     password: password
 

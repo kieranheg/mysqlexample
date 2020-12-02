@@ -9,10 +9,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AcmeRequest {
+public class AcmeUniEmployee {
     private String name;
     private String jobTitle;
     private String grade;
 
-    private List<PreviousRole> previousRoles;
+    private List<UniPreviousRole> previousRoles;
 }

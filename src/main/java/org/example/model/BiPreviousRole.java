@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PreviousRole {
+public class BiPreviousRole {
     private String jobTitle;
     private String grade;
 }
